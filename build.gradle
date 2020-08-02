@@ -1,0 +1,50 @@
+plugins {
+    id 'org.springframework.boot' version '2.2.5.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // https://mvnrepository.com/artifact/org.infinispan/infinispan-spring-boot-starter-embedded
+    implementation group: 'org.infinispan', name: 'infinispan-spring-boot-starter-embedded', version: '2.3.1.Final'
+    // https://mvnrepository.com/artifact/org.infinispan/infinispan-core
+    implementation group: 'org.infinispan', name: 'infinispan-core', version: '11.0.1.Final'
+    // https://mvnrepository.com/artifact/org.infinispan/infinispan-commons
+    implementation group: 'org.infinispan', name: 'infinispan-commons', version: '11.0.1.Final'
+    // https://mvnrepository.com/artifact/org.infinispan/infinispan-directory-provider
+    implementation group: 'org.infinispan', name: 'infinispan-directory-provider', version: '10.1.8.Final'
+    // https://mvnrepository.com/artifact/org.infinispan/infinispan-query
+    implementation group: 'org.infinispan', name: 'infinispan-query', version: '11.0.1.Final'
+    // https://mvnrepository.com/artifact/org.infinispan/infinispan-query-dsl
+    implementation group: 'org.infinispan', name: 'infinispan-query-dsl', version: '11.0.1.Final'
+
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'com.h2database:h2'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
