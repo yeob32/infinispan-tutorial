@@ -21,11 +21,10 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-cache'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
-    // https://mvnrepository.com/artifact/org.infinispan/infinispan-spring-boot-starter-embedded
-    implementation group: 'org.infinispan', name: 'infinispan-spring-boot-starter-embedded', version: '2.3.1.Final'
+//    // https://mvnrepository.com/artifact/org.infinispan/infinispan-spring-boot-starter-embedded
+//    implementation group: 'org.infinispan', name: 'infinispan-spring-boot-starter-embedded', version: '2.3.1.Final'
     // https://mvnrepository.com/artifact/org.infinispan/infinispan-core
     implementation group: 'org.infinispan', name: 'infinispan-core', version: '11.0.1.Final'
     // https://mvnrepository.com/artifact/org.infinispan/infinispan-commons
@@ -36,6 +35,11 @@ dependencies {
     implementation group: 'org.infinispan', name: 'infinispan-query', version: '11.0.1.Final'
     // https://mvnrepository.com/artifact/org.infinispan/infinispan-query-dsl
     implementation group: 'org.infinispan', name: 'infinispan-query-dsl', version: '11.0.1.Final'
+    // https://mvnrepository.com/artifact/org.infinispan/infinispan-clustered-lock
+    implementation group: 'org.infinispan', name: 'infinispan-clustered-lock', version: '11.0.1.Final'
+    // https://mvnrepository.com/artifact/com.github.ben-manes.caffeine/caffeine
+    implementation group: 'com.github.ben-manes.caffeine', name: 'caffeine', version: '2.8.4'
+
 
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'

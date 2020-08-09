@@ -1,12 +1,35 @@
 [
   {
-    "id": "data1",
-    "name": "Hello",
-    "description": "test data1"
+    "id": 1,
+    "title": "Hello",
+    "price": 1000,
+    "publicationYear": 20180809,
+    "description": "test data1",
+    "authors": {
+      "name": "sy",
+      "surname": "kim"
+    }
   },
   {
-    "id": "data2",
-    "name": "World",
-    "description": "test data2"
+    "id": 2,
+    "title": "World",
+    "price": 30000,
+    "publicationYear": 20180809,
+    "description": "test data2",
+    "authors": {
+      "name": "leo",
+      "surname": "kim"
+    }
+  },
+  {
+    "id": 3,
+    "title": "book3",
+    "price": 4000,
+    "publicationYear": 20180809,
+    "description": "test data3",
+    "authors": {
+      "name": "yeob32",
+      "surname": "kim"
+    }
   }
 ]

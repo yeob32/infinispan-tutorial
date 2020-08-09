@@ -1,7 +1,7 @@
 # infinispan 
 
 ### 개요
-* 인피니스팬 예제 코드 작성
+- 인피니스팬 예제 코드 작성
     - 인피니스팬 영구 저장 전략 및 캐시 검색
 
 ### 준비
@@ -11,6 +11,9 @@
     - infinispan-directory-provider 10.1.8.Final
     - infinispan-query 11.0.1.Final
     - infinispan-query-dsl 11.0.1.Final
+    
+### Ickle
+- Infinispan has its own query language called Ickle, which is string-based and adds support for full-text searching. Ickle support searches over indexed data, partially indexed data or non-indexed data.
 
 ### Reference
 * https://infinispan.org/docs/stable/titles/developing/developing.html

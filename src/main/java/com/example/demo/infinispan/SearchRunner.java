@@ -14,7 +14,8 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 /**
- * 쿼리는 항상 단일 엔터티 유형을 대상으로하며 단일 캐시의 내용에 대해 평가됩니다. 여러 캐시에서 쿼리를 실행하거나 여러 엔터티 유형 (조인)을 대상으로하는 쿼리를 만드는 것은 지원되지 않습니다.
+ * 쿼리는 항상 단일 엔터티 유형을 대상으로하며 단일 캐시의 내용에 대해 평가됩니다.
+ * 여러 캐시에서 쿼리를 실행하거나 여러 엔터티 유형 (조인)을 대상으로하는 쿼리를 만드는 것은 지원되지 않습니다.
  */
 @RequiredArgsConstructor
 @Component
@@ -26,32 +27,29 @@ public class SearchRunner implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         Cache<String, Book> cache = infinispanCacheManager.localCache();
 
+        // Embedded Query using Java Objects
         QueryFactory queryFactory = Search.getQueryFactory(cache);
-        // Defining a query to search for various authors and publication years
-        Query<Book> query = queryFactory.create("SELECT title FROM com.acme.Book WHERE author = :authorName AND publicationYear = :publicationYear");
-
-        // Set actual parameter values
-        query.setParameter("authorName", "Doe");
-        query.setParameter("publicationYear", 2010);
+        Query<Book> q = queryFactory.create("from com.example.demo.infinispan.domain.Book where price > 2000");
 
         // Execute the query
-        List<Book> found = query.execute().list();
+        QueryResult<Book> queryResult = q.execute();
+        System.out.println("queryResult.list() : " + queryResult.list());
 
+        // sorted by year and match all books that have "clustering" in their title
+        // and return the third page of 10 results
+        Query<Book> query = queryFactory.create("FROM com.example.demo.infinispan.domain.Book WHERE title like '%book%' ORDER BY publicationYear");
+        query.startOffset(20).maxResults(10);
+        List<Book> books = query.execute().list();
+        System.out.println("books : " + books);
 
+        // Defining a query to search for various authors and publication years
+//        Query<Book> query2 = queryFactory.create("SELECT title FROM com.example.demo.infinispan.domain.Book WHERE author = :authorName AND publicationYear = :publicationYear");
 
-        // get the query factory from the cache:
-        // QueryFactory queryFactory = Search.getQueryFactory(cache);
+        // Set actual parameter values
+//        query2.setParameter("authorName", "Doe");
+//        query2.setParameter("publicationYear", 2010);
 
-        // create an Ickle query that will do a full-text search (operator ':') on fields 'title' and 'authors.name'
-        Query<Book> fullTextQuery = queryFactory.create("FROM com.acme.Book WHERE title:'infinispan' AND authors.name:'sanne'");
-
-        // The ('=') operator is not a full-text operator, thus can be used in both indexed and non-indexed caches
-        Query<Book> exactMatchQuery = queryFactory.create("FROM com.acme.Book WHERE title = 'Programming Infinispan' AND authors.name = 'Sanne Grinnovero'");
-
-        // Full-text and non-full text operators can be part of the same query
-        Query<Book> query2 = queryFactory.create("FROM com.query.Book b where b.author.name = 'Stephen' and b.description : (+'dark' -'tower')");
-
-        // get the results
-        List<Book> found2 = query.execute().list();
+        // Execute the query
+//        List<Book> found = query2.execute().list();
     }
 }
