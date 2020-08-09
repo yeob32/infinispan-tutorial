@@ -47,8 +47,9 @@ public class StoreRunner {
             System.out.println("storeCache : " + cache.size());
 
             QueryFactory queryFactory = Search.getQueryFactory(cache);
-            Query<Member> query = queryFactory.create("from com.example.demo.infinispan.domain.Member where name like '%yeob%'");
-//            query.setParameter("name", "yeob");
+//            Query<Member> query = queryFactory.create("from com.example.demo.infinispan.domain.Member where name like '%yeob%'");
+            Query<Member> query = queryFactory.create("from com.example.demo.infinispan.domain.Member where name = :name");
+            query.setParameter("name", "yeob");
 
             Optional<Member> findMember = query.execute().list().stream().findAny();
             findMember.ifPresent(member -> System.out.println("findMember : " + findMember));
