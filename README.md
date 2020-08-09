@@ -15,6 +15,8 @@
 ### Ickle
 - Infinispan has its own query language called Ickle, which is string-based and adds support for full-text searching. Ickle support searches over indexed data, partially indexed data or non-indexed data.
 
+### Lucene
+
 ### Reference
 * https://infinispan.org/docs/stable/titles/developing/developing.html
 * https://infinispan.org/docs/10.1.x/titles/developing/developing.html

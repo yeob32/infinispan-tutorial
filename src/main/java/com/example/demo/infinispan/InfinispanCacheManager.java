@@ -4,7 +4,6 @@ import org.hibernate.search.cfg.Environment;
 import org.hibernate.search.cfg.SearchMapping;
 import org.infinispan.Cache;
 import org.infinispan.configuration.cache.ConfigurationBuilder;
-import org.infinispan.configuration.cache.StorageType;
 import org.infinispan.eviction.EvictionStrategy;
 import org.infinispan.manager.EmbeddedCacheManager;
 import org.infinispan.transaction.LockingMode;
@@ -82,7 +81,7 @@ public class InfinispanCacheManager {
                 .fetchPersistentState(true)
                 .ignoreModifications(false) // 수정 반영 안하는거?
                 .purgeOnStartup(false) // 스타트업 할때 다 지우는건가?
-                .location("classpath:store")
+                .location("infinispan-data")
                 .indexing().enable().withProperties(getIndexProperties());
 //                .async()
 //                .enabled(true);

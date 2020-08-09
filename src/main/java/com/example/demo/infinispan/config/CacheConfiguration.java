@@ -1,7 +1,9 @@
 package com.example.demo.infinispan.config;
 
+import org.infinispan.commons.marshall.JavaSerializationMarshaller;
 import org.infinispan.configuration.global.GlobalConfiguration;
 import org.infinispan.configuration.global.GlobalConfigurationBuilder;
+import org.infinispan.jboss.marshalling.core.JBossUserMarshaller;
 import org.infinispan.manager.DefaultCacheManager;
 import org.infinispan.manager.EmbeddedCacheManager;
 import org.springframework.context.annotation.Bean;
@@ -32,6 +34,15 @@ public class CacheConfiguration {
 
 //        EmbeddedCacheManager cacheManager = new DefaultCacheManager(globalConfig);
 
-        return new DefaultCacheManager();
+        GlobalConfigurationBuilder builder = new GlobalConfigurationBuilder();
+        builder.serialization()
+                .marshaller(new JavaSerializationMarshaller())
+                .whiteList()
+                .addRegexps("com.example.demo.infinispan.domain.Member");
+
+//        builder.serialization()
+//                .marshaller(new JBossUserMarshaller());
+
+        return new DefaultCacheManager(builder.build());
     }
 }
