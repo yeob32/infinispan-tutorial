@@ -43,6 +43,6 @@ public class AppRunner implements ApplicationRunner {
             cache.put(book.getId(), book);
         }
 
-        System.out.println(cache.size());
+        System.out.println("AppRunner cache size : " + cache.size());
     }
 }

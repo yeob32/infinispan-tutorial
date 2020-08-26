@@ -1,9 +1,6 @@
 package com.example.demo.infinispan.domain;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 
@@ -12,6 +9,7 @@ import java.io.Serializable;
 
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 @Getter
+@Setter
 @ToString
 @Indexed
 public class Member implements Serializable {

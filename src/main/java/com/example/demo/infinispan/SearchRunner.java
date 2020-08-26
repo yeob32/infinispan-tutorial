@@ -33,7 +33,7 @@ public class SearchRunner implements ApplicationRunner {
 
         // Execute the query
         QueryResult<Book> queryResult = q.execute();
-        System.out.println("queryResult.list() : " + queryResult.list());
+        System.out.println("queryResult.list() : " + queryResult.list().size());
 
         // sorted by year and match all books that have "clustering" in their title
         // and return the third page of 10 results
